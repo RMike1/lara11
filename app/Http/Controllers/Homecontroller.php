@@ -2,40 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use Log;
-use App\Models\Student;
+use App\Jobs\SendMail;
+use App\Models\Product;
+use App\Mail\BlogPosted;
+use App\Models\NewsLetter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
-class Homecontroller extends Controller
+class HomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $data=Student::all();
-        return view('Index',['data'=>$data]);
+        $items=Product::all();
+
+        // dd($items);
+
+        return view('Index',compact('items'));
+    }
+
+    public function create(){
+        return view('create');
     }
 
     public function store(Request $request)
     {
-        $data=new Student;
-        $data->name=$request->name;
-        $data->age=$request->age;
-        $data->save();
-        return redirect()->back();
+        $validated=$request->validate([
+            'email'=>'email|min:$request->valid',
+        ]);
+
+        // $news=NewsLetter::get('email');
+        // if($request->email=$news){
+        //     dd('already');
+        // }
+        $newsletter=new NewsLetter;
+        $newsletter->email=$request->email;
+        $newsletter->save();
+
+
+        // SendMail::dispatch();
+
+        return redirect()->back()->with('message','Thank you for subscribing to our newsletter!!');
+
     }
 
-    public function edit(string $id)
-    {
-        //
-    }
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-    public function destroy(string $id)
-    {
-        //
-    }
 }
