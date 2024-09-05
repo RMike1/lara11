@@ -2,7 +2,7 @@
     <tr
     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
     <td class="px-6 py-4 font-semibold">
-        {{-- {{$count++}} --}}
+        {{$count++}}
     </td>
     <td class="px-6 py-4 font-semibold">
         {{$item->name}}
@@ -44,7 +44,7 @@
         {{$item->price}}
     </td>
     <td class="px-6 py-4">
-        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+        <button type="button" wire@dd() class="font-medium text-red-600 dark:text-red-500 hover:text-white">Remove</button>
     </td>
 </tr>
 </div>

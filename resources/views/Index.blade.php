@@ -29,11 +29,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                  @php
+                  {{-- @php
                     $count=1;
-                  @endphp
+                  @endphp --}}
                   @foreach ($items as $item)
-                    <livewire:ItemList :item="$item" :key="$item->id" />
+                    <livewire:ItemList :item="$item" :key="$item->id"/>
                   @endforeach
                 </tbody>
             </table>

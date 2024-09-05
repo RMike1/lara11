@@ -22,6 +22,4 @@ Route::middleware([
     Route::get('create',[HomeController::class,'create'])->name('create');
 
     Route::post('store',[Homecontroller::class,'store'])->name('store');
-
-
 });

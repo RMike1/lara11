@@ -11,6 +11,10 @@ class Item extends Component
     public $name="";
     public $quantity="";
     public $price="";
+
+    public function check(){
+        dd('hello');
+    }
     
     public function saveProduct(){
 

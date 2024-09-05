@@ -1,7 +1,7 @@
 <div>
     <div class="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
         <h1 class="text-2xl font-bold mb-8 text-center p-4">Create Product</h1>
-        <form id="form" novalidate>
+        <form id="form" novalidate wire.submit="saveProduct">
             <div class="relative z-0 w-full mb-10">
                 <input type="text" name="name" wire:model='name' placeholder=" " required
                     class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
@@ -42,5 +42,7 @@
                 Saving post...
             </div>
         </form>
+
+        <button wire:click="check()">Check</button>
     </div>
 </div>
