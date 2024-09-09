@@ -8,23 +8,20 @@ use Livewire\Component;
 class Item extends Component
 {
 
-    public $name="";
-    public $quantity="";
-    public $price="";
+    public $name = "";
+    public $quantity = "";
+    public $price = "";
 
-    public function check(){
-        dd('hello');
-    }
-    
-    public function saveProduct(){
+    public function saveProduct()
+    {
 
-        $item=new Product;
-        $item->name=$this->name;
-        $item->quantity=$this->quantity;
-        $item->price=$this->price;
+        $item = new Product;
+        $item->name = $this->name;
+        $item->quantity = $this->quantity;
+        $item->price = $this->price;
         $item->save();
         $this->reset();
-        return $this->redirect('/home', navigate:true);
+        return $this->redirect('/home', navigate: true);
     }
 
     public function render()

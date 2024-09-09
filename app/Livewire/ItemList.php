@@ -11,22 +11,19 @@ class ItemList extends Component
     public $item;
     public $count;
 
-    public  $removeItem;
+
+    public function mount($item = null, $count = 1)
+    {
+
+        $this->item = $item;
+        $this->count = $count;
+    }
 
 
+    public Product $product;
 
-    public function removeProduct(){
-
-        dd('hello');
-        $id->delete();
-        return $this->redirect()->back();
-        }
-
-        public function mount($item = null,$count=1){
-
-        $this->item=$item;
-        $this->count=$count;
-        // $this->removeItem=$removeItem;
+    public function removeVal() {
+        $this->dispatch('removeData', infoValue:$this->product->id);
     }
 
     public function render()
