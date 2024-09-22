@@ -21,5 +21,7 @@ Route::middleware([
 
     Route::get('create',[HomeController::class,'create'])->name('create');
 
+    Route::get('edit',[HomeController::class,'edit'])->name('edit');
+
     Route::post('store',[Homecontroller::class,'store'])->name('store');
 });

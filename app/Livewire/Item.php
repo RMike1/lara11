@@ -4,22 +4,35 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\Attributes\Rule;
+use Livewire\WithFileUploads;
 
 class Item extends Component
 {
+    use WithFileUploads;
 
-    public $name = "";
-    public $quantity = "";
-    public $price = "";
+    #[Rule('required')]
+    public $name;
+
+    #[Rule('required')]
+    public $quantity;
+    
+    #[Rule('required')]
+    public $price;
+
+    #[Rule('required|image|max:1024|min:10')]
+    public $image;
 
     public function saveProduct()
     {
+        $validated=$this->validate();
 
-        $item = new Product;
-        $item->name = $this->name;
-        $item->quantity = $this->quantity;
-        $item->price = $this->price;
-        $item->save();
+
+        if($this->image){
+            $validated['image']=$this->image->store('uploads','public');
+        }
+
+        Product::create($validated);
         $this->reset();
         return $this->redirect('/home', navigate: true);
     }

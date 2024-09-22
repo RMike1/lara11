@@ -24,6 +24,10 @@ class HomeController extends Controller
     {
         return view('create');
     }
+    public function edit()
+    {
+        return view('edit');
+    }
 
     public function store(Request $request)
     {
