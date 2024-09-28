@@ -2,6 +2,7 @@
 
 use App\Livewire\ProductList;
 use App\Livewire\CreateProduct;
+use App\Livewire\EditProduct;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,3 +24,5 @@ Route::middleware([
 Route::get('/home',ProductList::class)->name('home');
 
 Route::get('/create',CreateProduct::class)->name('create');
+
+Route::get('edit/{item}',EditProduct::class)->name('edit');
