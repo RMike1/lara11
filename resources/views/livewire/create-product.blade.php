@@ -50,7 +50,7 @@
                         Save $ Go
                     </button>
                     <div wire:loading wire:target='saveProduct,saveProductGo'>
-                        Saving post...
+                        Saving product...
                     </div>
                     @if (session('success'))
                         <div>{{ session('success') }}</div>

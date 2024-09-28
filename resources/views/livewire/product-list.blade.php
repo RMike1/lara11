@@ -24,8 +24,14 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $counter=1;
+                @endphp
                 @foreach ($items as $item)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td class="px-6 py-4 font-semibold">
+                        {{ $counter++ }}
+                    </td>
                     <td class="px-6 py-4 font-semibold">
                         {{ $item->name }}
                     </td>
@@ -46,8 +52,8 @@
                                 </svg>
                             </button>
                             <div>
-                                <input value="" type="number" id="first_product"
-                                    class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                <input  type="number" id="first_product" value="{{ $item->quantity }}" 
+                                    class="bg-gray-50 border border-gray-300 w-32 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="1" required />
                             </div>
                             <button
@@ -61,9 +67,6 @@
                                 </svg>
                             </button>
                         </div>
-                    </td>
-                    <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                        {{ $item->quantity }}
                     </td>
                     <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                         {{ $item->price }}
