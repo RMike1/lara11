@@ -43,7 +43,7 @@
             {{ $item->price }}
         </td>
         <td class="px-6 py-4">
-            <a type="button" href={{route('edit')}} wire:navigate wire:model="editVal({{$item->id}})"
+            <a type="button" href={{route('edit',$item->id)}} wire:navigate wire:model="editVal({{$item->id}})"
                 class="font-medium text-red-600 dark:text-white hover:text-gray-500 hover:border-4 hover:border-x-amber-600 gap-5 pr-4">Edit</a>
             <button type="button" wire:click="removeVal({{$item->id}})"
                 class="font-medium text-red-600 dark:text-red-500 hover:text-white">Remove</button>

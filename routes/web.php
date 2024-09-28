@@ -1,7 +1,7 @@
 <?php
 
+use App\Livewire\ProductList;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Homecontroller;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,11 +17,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('home',[Homecontroller::class,'index'])->name('home');
-
-    Route::get('create',[HomeController::class,'create'])->name('create');
-
-    Route::get('edit',[HomeController::class,'edit'])->name('edit');
-
-    Route::post('store',[Homecontroller::class,'store'])->name('store');
 });
+
+Route::get('/home',ProductList::class)->name('home');
