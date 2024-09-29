@@ -41,7 +41,7 @@ class CreateProduct extends Component
             'name'=>'required|max:20|min:3',
             'price'=>'required|max:20|min:3',
             'quantity'=>'required|max:20',
-            'image'=>'image|max:1024',
+            'image'=>'required|image|max:1024',
         ]);
 
         if($this->image){

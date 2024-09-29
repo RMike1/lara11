@@ -40,7 +40,9 @@ class EditProduct extends Component
         }
 
         Product::find($this->itemId)->update($validated);
+        $this->reset();
         session()->flash('success','item updated successfully!');
+        return $this->redirect('/home', navigate:true);
 
     }
     

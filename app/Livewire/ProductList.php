@@ -11,8 +11,6 @@ use Livewire\Attributes\Lazy;
 #[Lazy()] 
 class ProductList extends Component
 {
-
-    
     public function placeholder(){
         return view('livewire.placeholder');
     }
