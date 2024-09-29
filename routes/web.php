@@ -21,8 +21,12 @@ Route::middleware([
 
 });
 
-Route::get('/home',ProductList::class)->name('home');
+Route::middleware('auth')->group(function(){
 
-Route::get('/create',CreateProduct::class)->name('create');
+    Route::get('/home',ProductList::class)->name('home')->lazy(enabled: true);
+    
+    Route::get('/create',CreateProduct::class)->name('create');
+    
+    Route::get('edit/{item}',EditProduct::class)->name('edit');
 
-Route::get('edit/{item}',EditProduct::class)->name('edit');
+});
