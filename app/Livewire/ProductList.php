@@ -5,10 +5,10 @@ namespace App\Livewire;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Lazy;
+// use Livewire\Attributes\Lazy;
 
 #[Layout('components.layouts.app')]    
-#[Lazy()] 
+// #[Lazy()] 
 class ProductList extends Component
 {
     public function placeholder(){

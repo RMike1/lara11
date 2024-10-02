@@ -28,7 +28,7 @@
                 {{-- <img src="{{ $image->temporaryUrl() }}" class="mt-2 h-20 block" alt=""> --}}
                 {{-- @else --}}
                 
-                @if ($image)
+                @if ($imagePrv)
                 <img src="{{ asset('storage/' . $item->image) }}" class="mt-2 h-20 block" alt="">
                 @endif
                 <div wire:loading wire:target="image">Uploading...</div>
