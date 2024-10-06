@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\Attributes\Rule;
 use Livewire\Attributes\Layout;
 // use Livewire\Attributes\Lazy;
 
@@ -11,6 +12,39 @@ use Livewire\Attributes\Layout;
 // #[Lazy()] 
 class ProductList extends Component
 {
+
+    #[Rule('required|min:1|max:50')]
+    public $quantity="";
+    public $editId="";
+
+    public function mount(Product $product){
+        $this->quantity=$product->quantity;
+    }
+
+
+    public function increamentQty($item){
+        $this->quantity=Product::find($item)->quantity;
+        $this->editId=$item;
+        // dd($test);
+        $this->validate();
+        Product::find($item)->update([
+            'quantity'=>++$this->quantity
+        ]);
+        $this->editId="";
+
+    }
+    public function decreamentQty($item){
+        $this->quantity=Product::find($item)->quantity;
+        $this->editId=$item;
+        // dd($test);
+        $this->validate();
+        Product::find($item)->update([
+            'quantity'=>--$this->quantity
+        ]);
+        $this->editId="";
+
+    }
+
     public function placeholder(){
         return view('livewire.placeholder');
     }
@@ -23,7 +57,7 @@ class ProductList extends Component
     {
         // sleep(3);
         return view('livewire.product-list',[
-            'items'=>Product::all()
+            'items'=>Auth()->user()->products
         ]);
     }
 }

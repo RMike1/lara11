@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('quantity');
             $table->string('image')->nullable();
             $table->string('price');
+            $table->foreignIdFor(\App\Models\User::class)->nullable();
             $table->timestamps();
         });
     }

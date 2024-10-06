@@ -29,7 +29,7 @@
                 $counter = 1;
             @endphp
             @foreach ($items as $item)
-                <tr wire:key='$item->id'
+                <tr wire:key={{$item->id}}
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="px-6 py-4 font-semibold">
                         {{ $counter++ }}
@@ -43,22 +43,28 @@
                     </td>
                     <td class="px-6 py-4">
                         <div class="flex">
-                            <button
+                            <button wire:click="decreamentQty({{$item->id}})"
                                 class="inline-flex justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                                 type="button">
                                 <span class="sr-only">Quantity button</span>
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 18 2">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="M1 1h16" />
                                 </svg>
                             </button>
                             <div>
-                                <input type="number" id="first_product" value="{{ $item->quantity }}"
+                                @if ($editId===$item->id)
+                                <input type="number" id="first_product" wire:model="quantity"
                                     class="bg-gray-50 border border-gray-300 w-32 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="1" required />
+                                    @else
+                                    <input type="number" id="first_product" value="{{$item->quantity}}"
+                                        class="bg-gray-50 border border-gray-300 w-32 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="1" required />
+
+                                @endif
                             </div>
-                            <button
+                            <button wire:click="increamentQty({{$item->id}})"
                                 class="inline-flex justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                                 type="button">
                                 <span class="sr-only">Quantity button</span>
@@ -76,7 +82,7 @@
                     <td class="px-6 py-4">
                         <a type="button" href="{{ route('edit', $item->id) }}" wire:navigate
                             class="font-medium text-red-600 dark:text-white hover:text-gray-500 hover:border-4 hover:border-x-amber-600 gap-5 pr-4">Edit</a>
-                        <button type="button" wire:confirm="sure to delete this?"
+                        <button type="button" wire:confirm="sure to delete this {{$item->name}}?"
                             wire:click="deleteProduct({{ $item->id }})"
                             class="font-medium text-red-600 dark:text-red-500 hover:text-white">Remove</button>
                     </td>
@@ -84,7 +90,6 @@
             @endforeach
         </tbody>
     </table>
-
 
 <div x-data="{ modelOpen: false }" x-on:keyup.escape="modelOpen = false">
     <button @click="modelOpen =!modelOpen" class="flex m-auto items-center justify-center px-3 py-2 space-x-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
