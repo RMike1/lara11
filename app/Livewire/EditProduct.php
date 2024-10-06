@@ -50,6 +50,8 @@ class EditProduct extends Component
             $validated['image'] = $oldImage;
         }
 
+        $validated['user_id']=Auth()->id();
+
         $product->update($validated);
 
         session()->flash('success', 'Item updated successfully!');
