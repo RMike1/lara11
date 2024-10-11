@@ -38,7 +38,7 @@
                         {{ $item->name }}
                     </td>
                     <td class="p-4">
-                        <img src="{{ asset('storage/' . $item->image) }}" class="w-16 md:w-32 max-w-full max-h-full"
+                        <img src="{{ asset('storage/'. $item->image) }}" class="w-16 md:w-32 max-w-full max-h-full"
                             alt="Apple Watch">
                     </td>
                     <td class="px-6 py-4">
